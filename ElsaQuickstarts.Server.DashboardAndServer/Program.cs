@@ -1,6 +1,7 @@
 using Elsa;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using Elsa.Persistence.EntityFramework.Sqlite;
+using ElsaGuides.RecurringTasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,9 @@ builder.Services.AddElsa(elsa => elsa
                     .AddConsoleActivities()
                     .AddHttpActivities(elsaSection.GetSection("Server").Bind)
                     .AddQuartzTemporalActivities()
+                    .AddJavaScriptActivities()  
                     .AddWorkflowsFrom<Startup>()
+                    .AddWorkflow<RecurringTaskWorkflow>()
                 );
 
 // Elsa API endpoints.
