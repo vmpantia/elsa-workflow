@@ -1,25 +1,11 @@
-using Elsa;
-using Elsa.Persistence.EntityFramework.Core.Extensions;
-using Elsa.Persistence.EntityFramework.Sqlite;
-using ELSADemo.Workflows;
-using Microsoft.Extensions.DependencyInjection;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 //ELSA
-builder.Services.AddElsa(options => options
-                    .UseEntityFrameworkPersistence(ef => ef.UseSqlite())
-                    .AddConsoleActivities()
-                    .AddHttpActivities()
-                    .AddQuartzTemporalActivities()
-                    .AddJavaScriptActivities()
-                    .AddWorkflowsFrom<Startup>()
-                    .AddWorkflow<RecurringTaskWorkflow>());
-    
-builder.Services.AddElsaApiEndpoints();
+builder.Services.AddElsa(options => 
+options.AddHttpActivities()).AddElsaApiEndpoints();
 
 
 var app = builder.Build();
