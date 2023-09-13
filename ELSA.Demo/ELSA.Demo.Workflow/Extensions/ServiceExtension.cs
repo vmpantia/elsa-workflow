@@ -2,6 +2,7 @@
 using Elsa.Persistence.EntityFramework.SqlServer;
 using Elsa.Persistence.EntityFramework.Core.Extensions;
 using ELSA.Demo.Workflow.Activities;
+using ELSA.Demo.Workflow.Workflows;
 
 namespace ELSA.Demo.Workflow.Extensions
 {
@@ -16,7 +17,10 @@ namespace ELSA.Demo.Workflow.Extensions
                                             .AddEmailActivities(elsaSection.GetSection("Smtp").Bind)
                                             .AddQuartzTemporalActivities()
                                             .AddJavaScriptActivities()
-                                            .AddActivity<RenewCustomerActivity>());
+                                            .AddActivity<RetrieveDataFromTmpActivity>()
+                                            .AddActivity<UpdateDataActivity>()
+                                            .AddActivity<RenewCustomerActivity>()
+                                            .AddWorkflow<SynchronizeDataWorkflow>());
                                             //.AddWorkflow<RenewCustomerWorkflow>());
 
             services.AddElsaApiEndpoints();

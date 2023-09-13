@@ -4,6 +4,7 @@ using ELSA.Demo.Workflow.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ELSA.Demo.Workflow.Migrations
 {
     [DbContext(typeof(ElsaDemoDbContext))]
-    partial class ElsaDemoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230913100919_CreateCustomersTmpTable")]
+    partial class CreateCustomersTmpTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

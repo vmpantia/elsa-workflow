@@ -7,6 +7,7 @@ namespace ELSA.Demo.Workflow.DataAccess
     {
         public ElsaDemoDbContext(DbContextOptions<ElsaDemoDbContext> options) : base(options) { }
 
+        public DbSet<TemporaryCustomer> TemporaryCustomers { get; set; }
         public DbSet<Customer> Customers { get; set; }
     }
 }
